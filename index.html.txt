@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Person Class Hierarchy</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  margin: 50px auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f1f1f1;
+  font-weight: bold;
+}
+
+
+import React from "react";
+import "./App.css";
+
+// Base Class: Person
+class Person {
+  constructor(name, department) {
+    this.name = name;
+    this.department = department;
+  }
+
+  displayInfo() {
+    return `Name: ${this.name}, Department: ${this.department}`;
+  }
+}
+
+// Subclass: Student
+class Student extends Person {
+  constructor(name, age, course) {
+    super(name, "Student Dept"); // or you can pass a specific department if needed
+    this.age = age;
+    this.course = course;
+  }
+
+  displayInfo() {
+    return `Student Name: ${this.name}, Age: ${this.age}, Course: ${this.course}`;
+  }
+}
+
+// Subclass: Teacher
+class Teacher extends Person {
+  constructor(name, department, subject) {
+    super(name, department);
+    this.subject = subject;
+  }
+
+  displayInfo() {
+    return `Teacher Name: ${this.name}, Department: ${this.department}, Subject: ${this.subject}`;
+  }
+}
+
+// React Component
+const App = () => {
+  const student1 = new Student("Smile Katoch", 20, "CSE");
+  const teacher1 = new Teacher("Ms. Gurbani", "AIT", "ADBMS");
+
+  return (
+    <div className="container">
+      <h1>Person Class Hierarchy</h1>
+      <div className="card">{student1.displayInfo()}</div>
+      <div className="card">{teacher1.displayInfo()}</div>
+    </div>
+  );
+};
+
+export default App;
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
